@@ -1,0 +1,25 @@
+library(lubridate)
+
+twenty<-hot_long %>%
+  mutate(year = year(ymd(WeekID)))%>%
+  filter(year > 1989)%>%
+  filter(Week.Position < 20)%>%
+  group_by(Song)%>%
+  count()
+
+
+
+mean(twenty$n)
+
+
+twenty_short<-twenty%>%
+  filter(n >9)
+
+
+View(twenty_short)
+
+#final list
+hot_long%>%
+  filter(Song=="Hero")%>%
+  group_by(Performer)%>%
+  count()
