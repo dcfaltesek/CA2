@@ -25,13 +25,14 @@ C24 <- read.csv("~/Desktop/C24.csv")
 D24 <- read.csv("~/Desktop/D24.csv")
 
 #combine the files to crete a year by year wide dataset
+library(dplyr)
 one<-bind_cols(A21,B21,C21,D21)
 two<-bind_cols(A22,B22,C22,D22)
 three<-bind_cols(A23,B23,C23,D23)
 four<-bind_cols(A24,B24,C24,D24)
 
-
 library(stringr)
+#these functions clean the names strings
 Z<-str_remove(one$School...2, "NCAA" ) %>% str_trim(side=c("both"))
 onePrime<-data.frame("Team" = Z, "Year"=2021, one)
 twoPrime<-data.frame("Team" = str_remove(two$School...2, "NCAA" ) %>% str_trim(side=c("both")), "Year"=2022, two)
@@ -46,7 +47,7 @@ library(lubridate)
 A<-tournamentgamesWB %>% filter(Year == 2021)
 B<-tournamentgamesWB %>% filter(Year == 2022)
 C<-tournamentgamesWB%>% filter(Year == 2023)
-D<-tournamentgamesWB%>% filter(Year == 2024)
+
 
 #these joining routines made a very wide dataset where all four views for both teams in any given match are present
 #check the data dictionary for more...
@@ -171,6 +172,7 @@ fourFinal<-bind_cols(G, fourRead)
 #four final is the new processed data
 prediction<-data.frame(.pred_class=predict(ball_fit, fourFinal), G)
 
+prediction
 #at least with my set seed, we have Iowa, South Carolina, and Oregon State winning
 
 
