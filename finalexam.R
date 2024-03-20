@@ -1,4 +1,5 @@
 #this code produces the dataset and stock predictions for the NCAA Womens Tournament
+#the data for this project was downloaded from College Sports Reference, they do amazing work 
 
 #all A files are basic stats for a team
 #all B files are basic opp stats for a team
